@@ -26,3 +26,17 @@ header nav ul li { display: inline-block; /* li by default are stacked on top of
 .link:visited { color: inherit; } /* get rid of links' default color when visited */
 .link:hover { color: var(--highlightDark); } /* color link when hovered */
 .link:active { color: var(--primaryDark); } /* color link clicked down */
+ul#hamburgerUL { list-style: none; padding: 10px; padding-top: 0;/* ul for small screens */
+  display: flex; flex-direction: column; align-items: flex-end; gap: 10px; /* space out li and align them on the right */
+  display: none; /* overrides display: flex; Hidden by default & will always be hidden unless hamburger icon reveals it */ }
+button#hamburgerIcon { display: none; } /* hamburger icon will always be hidden unles revealed by media query for small screens */
+@media (max-width: 680px) { /* max-width means from 680 and below & excludes >680 */
+  header nav ul { display: none; } /* main ul will be hidden when media query for small screens activates */
+  header { justify-content: flex-start; /* this aligns logo at the start of the cross-axis, which was originally at the center */
+    position: relative; /* needed to make hamburger icon absolute so it can be placed on top right within header */ }
+  header button#hamburgerIcon { border: 0; background: none; /* get rid of default button styling */
+    display: block; /* reveal the hamburger icon */
+    position: absolute; /* this takes icon out of document flow, border box of header will behave as if though icon doesn't exist */
+    right: 0; top: 0; /* place top right in relation to closest ancestor with position: relative; */ }
+  ul#hamburgerUL.displayFlex {display: flex;} }  /* explanation in src/components/Header.js
+  at <button id="hamburgerIcon" onClick={handleClick}> */
