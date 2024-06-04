@@ -40,3 +40,17 @@ button#hamburgerIcon { display: none; } /* hamburger icon will always be hidden 
     right: 0; top: 0; /* place top right in relation to closest ancestor with position: relative; */ }
   ul#hamburgerUL.displayFlex {display: flex;} }  /* explanation in src/components/Header.js
   at <button id="hamburgerIcon" onClick={handleClick}> */
+section.contentContainer { flex-basis: 680px; /* for consistency, all content within a section will be restricted to width of header */ }
+footer { background: var(--highlightLight);
+  display: flex; /* make the footer a flexbox for its child, the content container */
+  justify-content: center; /* center the content container */
+  padding: 2rem; /* add padding around the content container */ }
+section.contentContainer.footerContent { display: flex; /* make container a flexbox for its 2 children: logo & rest of the content */ }
+section.contentContainer.footerContent div img.footerImg { width: 100px; /* set footer logo to a fixed width */ }
+section.contentContainer.footerContent div.footerContentSansLogo {
+  flex-grow: 1; /* the logo will retain its width, the 2nd child will grow to rest of the container */
+  display: flex; /* make the footerContentSansLogo a flexbox for its 3 children, Site Map, Contact, & Social Media Links */
+  flex-wrap: wrap; }
+section.contentContainer.footerContent div.footerContentSansLogo div.flexChild {
+  padding: 1rem 1rem 1rem 2.5rem; /* set a padding for each flex item */ }
+.footerSiteMapUL { list-style: none; /* get rid of dots next to the LIs in footer ULs */ }
