@@ -1,6 +1,6 @@
 /* src/index.css */
 /* ==================================================== */
-* { margin: 0; padding: 0; } /* css reset */
+* { margin: 0; padding: 0; box-sizing: border-box;} /* css reset */
 :root { /* set to variables website colors as per styleGuide */
   --primaryDark: #495E57;
   --secondaryDark: #EE9972;
@@ -40,11 +40,11 @@ button#hamburgerIcon { display: none; } /* hamburger icon will always be hidden 
     right: 0; top: 0; /* place top right in relation to closest ancestor with position: relative; */ }
   ul#hamburgerUL.displayFlex { display: flex; } } /* explanation in src/components/Header.js
   at <button id="hamburgerIcon" onClick={handleClick}> */
-section.footerContentContainer { flex-basis: 680px; /* for consistency, all content within a section will be restricted to width of header */ }
 footer { background: var(--highlightLight);
   display: flex; /* make the footer a flexbox for its child, the content container */
   justify-content: center; /* center the content container */
-  padding: 2rem; /* add padding around the content container */ }
+  padding: 2rem 10px; /* add padding around the content container */ }
+section.footerContentContainer { flex-basis: 680px; /* for consistency, all content within a section will be restricted to width of header */ }
 section.footerContentContainer.footerContent { display: flex; /* make container a flexbox for its 2 children: logo & rest of the content */ }
 section.footerContentContainer.footerContent div img.footerImg { width: 100px; /* set footer logo to a fixed width */ }
 section.footerContentContainer.footerContent div.footerContentSansLogo {
