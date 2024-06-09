@@ -12,7 +12,7 @@ export default function Header() {
     } else { setULClass('') } }
   return (
     <>
-      <header>
+      <header id="scrollToTop"> {/* id not for styling, only purpose of this id is to allow footer links to scroll to the top */}
         {/* Make the logo a link to home as well */}
         {/* this isn't a text link so no need for className='link' because none of those styles will apply */}
         <Link to="/"><img src={logo} alt="header logo" /></Link>
