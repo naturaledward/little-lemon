@@ -6,7 +6,7 @@ import HomePage from '../pages/HomePage'
 import ReservePage from '../pages/ReservePage'
 export default function Main() {
   return (
-    <main>
+    <main className='page'>
       <Routes>
         {/* default route if nothing typed in browser address */}
         <Route path='/' element={<HomePage />} />
