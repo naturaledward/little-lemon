@@ -55,8 +55,8 @@ section.footerContentContainer.footerContent div.footerContentSansLogo div.flexC
   padding: 1rem 1rem 1rem 2.5rem; /* set a padding for each flex item */ }
 .footerSiteMapUL { list-style: none; /* get rid of dots next to the LIs in footer ULs */ }
 /* RULES FOR ALL PAGE SECTIONS */
-main.page { /* main tag wraps around 2 possible Routes: HomePage & ReservePage */
-  display: grid; /* each page will be a 1 column grid of sections: 4 sections within HomePage & 2 within ReservePage */
+main.page { /* main tag wraps around 2 possible Routes: HomePage & BookingPage */
+  display: grid; /* each page will be a 1 column grid of sections: 4 sections within HomePage & 2 within BookingPage */
   grid-template-columns: 1fr; }
 main.page section { display: flex; /* make each page section a flexbox for its contentArea */
   padding: 3rem 10px; /* add sufficient space between content area and its page section edges */
@@ -163,15 +163,14 @@ main.page section.homeDescription div.contentArea div.descriptionImages img.img-
   grid-area: 1 / 3 / 5 / 6; /* layered on top of previous image */
   width: 100%; height: 100%; object-fit: cover; }
 @media(max-width: 500px) { main.page section.homeDescription div.contentArea { grid-template-columns: 1fr; }} /* make responsive for small screens */
-/* RULES FOR reserveHero SECTION */
-main.page section.reserveHero { background: var(--primaryDark); }/* set the background color of the reserveHero section */
-main.page section.reserveHero div.contentArea{ 
-  display: grid; /* make contentArea of the reserveHero section a grid for its 2 children, the text and the img */
+/* RULES FOR bookingHero SECTION */
+main.page section.bookingHero { background: var(--primaryDark); }/* set the background color of the bookingHero section */
+main.page section.bookingHero div.contentArea{ 
+  display: grid; /* make contentArea of the bookingHero section a grid for its 2 children, the text and the img */
   grid-template-columns: 1fr 1fr; /* text and img will be side by side in their own columns with a gap in between the columns */
   column-gap: 2rem; }
-main.page section.reserveHero h1 { color: var(--primaryLight); } /* set color of header & p of the reserveHero section */
-main.page section.reserveHero p { color: var(--highlightLight); margin: 1.5rem 0; }
-main.page section.reserveHero img { width: 100%; height: 300px; object-fit: cover; border-radius: 8px; } /* style & set img dimensions */
-@media(max-width: 500px) { main.page section.reserveHero div.contentArea{ grid-template-columns: 1fr; } /* turn section to 1 col grid for small screens */
-  main.page section.reserveHero img { height: 250px; } }
-  
+main.page section.bookingHero h1 { color: var(--primaryLight); } /* set color of header & p of the bookingHero section */
+main.page section.bookingHero p { color: var(--highlightLight); margin: 1.5rem 0; }
+main.page section.bookingHero img { width: 100%; height: 300px; object-fit: cover; border-radius: 8px; } /* style & set img dimensions */
+@media(max-width: 500px) { main.page section.bookingHero div.contentArea{ grid-template-columns: 1fr; } /* turn section to 1 col grid for small screens */
+  main.page section.bookingHero img { height: 250px; } }

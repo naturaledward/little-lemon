@@ -3,7 +3,7 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import HomePage from '../pages/HomePage'
-import ReservePage from '../pages/ReservePage'
+import BookingPage from '../pages/BookingPage'
 export default function Main() {
   return (
     <main className='page'>
@@ -11,6 +11,6 @@ export default function Main() {
         {/* default route if nothing typed in browser address */}
         <Route path='/' element={<HomePage />} />
         {/* append /reserve in browser address to go here */}
-        <Route path='/reserve' element={<ReservePage />} />
+        <Route path='/reserve' element={<BookingPage />} />
       </Routes>
     </main>); }

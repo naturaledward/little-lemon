@@ -1,10 +1,10 @@
-// src/pages/ReservePage.js
+// src/pages/BookingPage.js
 // ====================================================
 import React from 'react'
 import { Link } from 'react-router-dom'
-export default function ReservePage() {
+export default function BookingPage() {
   return ( <>
-      <section className='reserveHero'>
+      <section className='bookingHero'>
         <div className='contentArea'>
           <div><h1>Reserve a Table</h1>
             <p>Easily and conveniently reserve a table for your party online! Simply fill
