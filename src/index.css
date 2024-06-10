@@ -54,3 +54,124 @@ section.footerContentContainer.footerContent div.footerContentSansLogo {
 section.footerContentContainer.footerContent div.footerContentSansLogo div.flexChild {
   padding: 1rem 1rem 1rem 2.5rem; /* set a padding for each flex item */ }
 .footerSiteMapUL { list-style: none; /* get rid of dots next to the LIs in footer ULs */ }
+/* RULES FOR ALL PAGE SECTIONS */
+main.page { /* main tag wraps around 2 possible Routes: HomePage & ReservePage */
+  display: grid; /* each page will be a 1 column grid of sections: 4 sections within HomePage & 2 within ReservePage */
+  grid-template-columns: 1fr; }
+main.page section { display: flex; /* make each page section a flexbox for its contentArea */
+  padding: 3rem 10px; /* add sufficient space between content area and its page section edges */
+  justify-content: center; } /* content area will be centered within its page section */
+main.page section div.contentArea { flex-basis: 680px; } /* page section contentArea will have a limited width, to shrink with browser */
+main.page section div.contentArea h1 { font-family: 'Markazi Text'; font-size: 2.7rem; } /* Set page section h1 headers to Markazi Text, won't wrap at 320 */
+main.page section div.contentArea h2 { font-family: 'Markazi Text'; font-size: 2rem; } /* Set page section h2 subheaders to Markazi Text */
+main.page section div.contentArea h3 { font-family: 'Markazi Text'; font-size: 1.3rem; } /* Set page section h4 subheaders to Markazi Text, won't wrap price */
+main.page section div.contentArea button { background: var(--primaryLight); border-radius: 8px; padding: 1rem; border: 0; cursor: pointer; }/* style button */
+main.page section div.contentArea button:active { animation: colorButton .25s linear forwards; } /* color button animation on click and hold */
+@keyframes colorButton { 100% { background-color: var(--primaryDark); color: var(--highlightLight); } }
+/* RULES FOR homeHero SECTION */
+main.page section.homeHero { background: var(--primaryDark); }/* set the background color of the homeHero section */
+main.page section.homeHero div.contentArea{ 
+  display: grid; /* make contentArea of the homeHero section a grid for its 2 children, the text and the img */
+  grid-template-columns: 1fr 1fr; /* text and img will be side by side in their own columns with a gap in between the columns */
+  column-gap: 2rem; }
+main.page section.homeHero h1 { color: var(--primaryLight); } /* set color of header, subheader, & p of the homeHero section */
+main.page section.homeHero h2 { color: var(--highlightLight); }
+main.page section.homeHero p { color: var(--highlightLight); margin-top: 1rem; }
+main.page section.homeHero button { margin: 1.5rem 0; }
+main.page section.homeHero img { width: 100%; height: 300px; object-fit: cover; border-radius: 8px; } /* style & set img dimensions */
+@media(max-width: 475px) { main.page section.homeHero div.contentArea{ grid-template-columns: 1fr; } /* turn section to 1 col grid for small screens */
+  main.page section.homeHero img { height: 250px; } }
+/* RULES FOR homeSpecials SECTION */
+main.page section.homeSpecials div.contentArea {
+  display: grid; /* make contentArea of the homeSpecials section a grid for its 3 children: the header, the button, and cards area */
+  grid-template-columns: 1fr auto; /* 2 column grid: header and button take 1st row, card area will span entire 2nd row.
+  -button in 2nd column which is auto sized, column will be width of button and thus be naturally aligned to the right */
+  gap: 1rem; /*decided to not use px anymore throughout project and instead opt for rem or % */ }
+main.page section.homeSpecials div.contentArea div.dishCards { grid-column: span 2; 
+  display: flex; /* make cards area a flexbox for its card children to be displayed side by side */
+  gap: 1rem; /* space out the cards horizontally */ }
+main.page section.homeSpecials div.contentArea div.dishCards article.dishCard { background: var(--secondaryLight); /* article color for cards & testimonials */
+  border-radius: 8px 8px 0 0; /* each card will have rounded corners on top only */
+  flex: 1; /* make each card grow horizontally and cover entire main axis */
+  display: flex; /* make each card a flexbox for its children: image, dish/price, description, call to action/icon to bottom of card */
+  flex-direction: column; /*  children to be stacked on top of each other */
+  gap: 1rem; /* space out children vertically */ }
+main.page section.homeSpecials div.contentArea div.dishCards article.dishCard img.dishImg {
+  width: 100%; /* reduce img width to its card container to prevent overflow along the main axis */
+  border-radius: 8px 8px 0 0; /* img since it rests on top of the card shall have same rounded corners at the top as well so as to be flush with the card */
+  height: 138px; /* need a consistent height across all images in the cards so that rest of text is lined up */
+  object-fit: cover; /* crop and center the image so as to avoid stretching it */ }
+main.page section.homeSpecials div.contentArea div.dishCards article.dishCard h3 { display: inline; /* make the dish name and price share the same line */
+  padding-left: 1rem; /* can't think of a more elegant solution to space out card items horizontally from container edges */ }
+main.page section.homeSpecials div.contentArea div.dishCards article.dishCard h3.colorAndFloat { color: var(--secondaryDark); /* color the price */
+  float: right; /* position price to the right side of the card and still share same line as dish name */
+  padding-right: 1rem; /* can't think of a more elegant solution to space out card items horizontally from container edges */ }
+main.page section.homeSpecials div.contentArea div.dishCards article.dishCard p { color: var(--highlightDark); /* description text slightly lighter */
+  padding: 0 1rem; /* can't think of a more elegant solution to space out card items horizontally from container edges */ }
+main.page section.homeSpecials div.contentArea div.dishCards article.dishCard div.justifySelfBottom { /* bring call to action to bottom of card */
+  margin-top: auto; /* justify-self ignored for flex items. but a workaround is to use margin- to position items at the opposite end of main axis */
+  padding: 0 1rem 1rem 1rem; /* can't think of a more elegant solution to space out card items horizontally from container edges, make space at bottom too */ }
+main.page section.homeSpecials div.contentArea div.dishCards article.dishCard img.deliveryIcon { width: 25px; /* resize bike icon */
+  float: right; /* hacked this: there's whitespace on top and bottom of image so it is misaligned with text. Floating right resolves this */ }
+@media(max-width: 625px) { main.page section.homeSpecials div.contentArea { grid-template-columns: 1fr; } /* turn section to 1 col grid for small screens
+  -Keep in mind, cards area still occupies 2 columns which is preventing grid from turning to 1 col */
+  main.page section.homeSpecials div.contentArea div.dishCards {
+    grid-column: inherit; /* overrides the child's grid-column: span 2; which would force a 2 col grid, inherit is as if grid-column: span 2; were removed */
+    flex-direction: column; /* make the y-axis the main axis so cards are stacked on top of each other */ }
+  main.page section.homeSpecials div.contentArea div.dishCards article.dishCard img.dishImg { height: 175px; /* increase dish image height slightly */ } }
+/* RULES FOR homeTestimonials SECTION */
+main.page section.homeTestimonials { background: var(--highlightLight); }/* set the background color of the homeTestimonials section */
+main.page section.homeTestimonials div.contentArea {
+  display: grid; /* make contentArea of the homeTestimonials section a grid for its 2 children: the header & testimonials area */
+  grid-template-columns: 1fr; /* 1 column grid */
+  gap: 2rem; }
+main.page section.homeTestimonials div.contentArea h1 {text-align: center; } /* center the header */
+main.page section.homeTestimonials div.contentArea div.reviews { display: flex; /* make reviews area a 4 col grid for the 4 reviewCard */
+  flex-wrap: wrap; /* wrap all reviewCard as grid gets smaller */
+  justify-content: center; /* center all reviewCard (even as they wrap) */
+  gap: 1rem; } /* space out each reviewCard */
+main.page section.homeTestimonials div.contentArea div.reviews article.reviewCard { background: var(--secondaryLight); color: var(--highlightDark);
+  padding: 1rem; /* add padding between review card edges and its content*/
+  flex: 0 0 157px; /* all reviewCard will have a fixed width and will wrap when there is no more space */
+  display: flex; /* make each reviewCard a flexbox for its children: star rating pic/name review message */
+  flex-direction: column; /* stack the flex items on top of each other*/
+  gap: .5rem; } /* space out the children vertically */
+main.page section.homeTestimonials div.contentArea div.reviews article.reviewCard div.picAndName {
+  display: flex; /* want review pic and revier name to be aligned to their centers side by side, this div contains both and will be a flexbox for them */
+  align-items: center;
+  gap: .5rem; }
+main.page section.homeTestimonials div.contentArea div.reviews article.reviewCard div.picAndName img { border: 1px solid; border-radius: 8px;
+  width: 60px; } /* keep the reviewer pic a fixed size */
+/* RULES FOR homeDescription SECTION */
+main.page section.homeDescription div.contentArea {
+  display: grid; /* make contentArea of the homeDescription section a grid for its 2 children, the text and the img */
+  grid-template-columns: 1fr 1fr; /* text and img will be side by side in their own columns with a gap in between the columns */
+  gap: 2rem; }
+main.page section.homeDescription div.contentArea div.descriptionText p { margin-top: 1.5rem; font-weight: bold; text-align: justify; } /* style paragraph */
+main.page section.homeDescription div.contentArea div.descriptionImages { display: grid;
+  grid-template-columns: repeat(5, 1fr); /* images will be layered on top of each other along a 5x5 grid */
+  grid-template-rows: repeat(5, 1fr); }
+main.page section.homeDescription div.contentArea div.descriptionImages img.img-1 {
+  grid-area: 2 / 1 / 6 / 4;
+  width: 100%; /* image will resize and conform horizontally to the grid area as the grid changes size */
+  height: 100%; /* if imagae's height is greater than grid dimensions, it will expand the grid vertically to accomodate to the aspect ratio,
+  this is regardless if a height: is defined or not
+  -If image height is shorter, original aspect ratio is still preserved and will not conform to the grid-area,
+  setting height: 100%; will stretch the image vertically to make it conform to the grid-area, but it distorts the aspect ratio */
+  object-fit: cover; /* This will restore the aspect ratio by cropping and centering the image */ }
+main.page section.homeDescription div.contentArea div.descriptionImages img.img-2 {
+  grid-area: 1 / 3 / 5 / 6; /* layered on top of previous image */
+  width: 100%; height: 100%; object-fit: cover; }
+@media(max-width: 500px) { main.page section.homeDescription div.contentArea { grid-template-columns: 1fr; }} /* make responsive for small screens */
+/* RULES FOR reserveHero SECTION */
+main.page section.reserveHero { background: var(--primaryDark); }/* set the background color of the reserveHero section */
+main.page section.reserveHero div.contentArea{ 
+  display: grid; /* make contentArea of the reserveHero section a grid for its 2 children, the text and the img */
+  grid-template-columns: 1fr 1fr; /* text and img will be side by side in their own columns with a gap in between the columns */
+  column-gap: 2rem; }
+main.page section.reserveHero h1 { color: var(--primaryLight); } /* set color of header & p of the reserveHero section */
+main.page section.reserveHero p { color: var(--highlightLight); margin: 1.5rem 0; }
+main.page section.reserveHero img { width: 100%; height: 300px; object-fit: cover; border-radius: 8px; } /* style & set img dimensions */
+@media(max-width: 500px) { main.page section.reserveHero div.contentArea{ grid-template-columns: 1fr; } /* turn section to 1 col grid for small screens */
+  main.page section.reserveHero img { height: 250px; } }
+  
