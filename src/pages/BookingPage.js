@@ -10,6 +10,10 @@ const BookingHero = () =>
           out the form below and you will receive a confirmation immediately.</p> </div>
       <img src={require('../assets/stock_restaurant.jpg')} alt="hero reserve" /> </div> </section>;
 const BookingForm = () =>
-  <section className='bookingForm'>Reservation Form Section</section>
+  <section className='bookingForm'>
+    <div className='contentArea'>
+      form goes in here
+    </div>
+  </section>
 const BookingPage = () => <> <BookingHero /> <BookingForm /> </>;
 export default BookingPage;
