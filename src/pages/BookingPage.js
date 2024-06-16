@@ -11,7 +11,7 @@ const BookingHero = () =>
 const BookingForm = () => {
   const handleChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
   const formDataInitialObj = { dateVal: '', timeVal: '17:00', guests: '1', occasion: 'Birthday' }
-  const [availableTimes, setAvailableTimes] = useState(['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'])
+  const [availableTimes] = useState(['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'])
   const listTimes = availableTimes.map(i => <option key={i}>{i}</option>)
   const [formData, setFormData] = useState(formDataInitialObj)
   const handleSubmit = e => {
