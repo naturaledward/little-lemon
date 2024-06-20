@@ -34,7 +34,7 @@ export default function Main() {
     // if none of the actions selected, then don't update the state, hence what is returned for update is just the current state
     return v }
   // state lifted from BookingPage.js to be passed to BookingPage.js instead along with its dispatch function, state changed to a reducer
-  const [availableTimes, dispatchTimes] = useReducer(updateTimes, initializeTimes)
+  const [availableTimes, dispatchTimes] = useReducer(updateTimes, initializeTimes())
   return (
     <main className='page'>
       <Routes>
