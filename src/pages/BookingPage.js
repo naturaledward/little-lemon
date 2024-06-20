@@ -32,6 +32,7 @@ const BookingForm = ({ availableTimes, dispatchTimes }) => {
     setFormData(formDataInitialObj)
   } /* re initialize state */
   return <section className='bookingForm'> <div className='contentArea'>
+    <h1>Book Now</h1>
     <form onSubmit={handleSubmit} className='formElement'>
       <label htmlFor='res-date'>Choose date</label>
       {/* on change of the date field, the dispatch for availableTimes state is called to update time field options */}
