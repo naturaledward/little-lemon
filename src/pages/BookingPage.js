@@ -10,9 +10,6 @@ const BookingHero = () =>
       <img src={require('../assets/stock_restaurant.jpg')} alt="hero reserve" /> </div> </section>
 // availableTimes is a list of available times to make a reservation for, displayed as a list of options for <select> input on the form
 const BookingForm = ({ availableTimes, dispatchTimes }) => {
-  const today = new Date() //get today's date & convert it to <input type='date'> input date format: yyyy-mm-dd
-  const todayFormatted = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') //to be used for date input min value
-    + '-' + String(today.getDate()).padStart(2, '0')
   const handleChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
   /* in addition to updating date state value like in handleChange, call the dispatch function of availableTimes state
   and pass to it the date that was selected for the date form field
@@ -21,16 +18,20 @@ const BookingForm = ({ availableTimes, dispatchTimes }) => {
     /* make it so whenever a new date is selected, the time field will deselect its current time option and revert to the placeholder */
     setFormData({ ...formData, timeVal: '', [e.target.name]: e.target.value })
     dispatchTimes({ type: e.target.value }) }
-  // initialize form values to empty and make sure there are placeholders
-  const formDataInitialObj = { dateVal: '', timeVal: '', guests: '', occasion: '' }
+  const today = new Date() //get today's date & convert it to <input type='date'> input date format: yyyy-mm-dd
+  const todayFormatted = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0')
+    + '-' + String(today.getDate()).padStart(2, '0') // to be used to initialize date & set min value
+  // NOTE: though time options are dependent on date, still need to initialize time options as you did for dateVal(today's date)
+  // for consistency, initialized value must match the returned value for the associated action(today's date) in the reducer
+  // initialize form values and make sure there are placeholders for the empty ones
+  const formDataInitialObj = { dateVal: todayFormatted, timeVal: '', guests: '', occasion: '' }
   const [formData, setFormData] = useState(formDataInitialObj)
   // keep submit button disabled until all form fields are populated
   const isDisabled = (formData.dateVal === '') || (formData.timeVal === '') || (formData.guests === '') || (formData.occasion === '')
   const handleSubmit = e => {
     e.preventDefault() /* prevent default behavior upon submit  */
     alert(formData.dateVal + '\n' + formData.timeVal + '\n' + formData.guests + '\n' + formData.occasion)
-    setFormData(formDataInitialObj)
-  } /* re initialize state */
+    setFormData(formDataInitialObj) } /* re initialize state */
   return <section className='bookingForm'> <div className='contentArea'>
     <h1>Book Now</h1>
     <form onSubmit={handleSubmit} className='formElement'>
