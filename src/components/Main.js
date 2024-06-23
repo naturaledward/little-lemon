@@ -5,8 +5,6 @@ import { Routes, Route } from 'react-router-dom'
 import HomePage from '../pages/HomePage'
 import BookingPage from '../pages/BookingPage'
 export default function Main() {
-  // temporary array for holding mock available times if today or tomorrow is selected
-  const dummyTimes = ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
   /* The page should display the existing booked table times & available slots
   using a list component containing several instances of a BookingSlot component.
   Available booking slots will be shared between the components and updated when the user submits the form */
