@@ -41,15 +41,16 @@ const BookingForm = ({ availableTimes, dispatchTimes }) => {
       <label htmlFor='res-time'>Choose time</label>
       <select id='res-time' name='timeVal' value={formData.timeVal} onChange={handleChange}>
         {/* a list of <option> tags passed from Main.js that contain all available time slots for a particular date input */}
-        {/* placeholder for empty options. This can't be selected. To be set to empty at initialization & when new date selected */}
-        <option value='' disabled selected>Select time for given date</option>
+        {/* placeholder for empty options. It's disabled & can't be selected. To be set to '' at initialization & when new date selected
+        -Works because when value prop of <select> equals value prop of one of its <option>, that option will be selected */}
+        <option value='' disabled>Select time for given date</option>
         {availableTimes}</select>
       <label htmlFor='guests'>Number of guests</label>
       <input id='guests' type='number' placeholder='enter 1-10' min='1' max='10'
         name='guests' value={formData.guests} onChange={handleChange} />
       <label htmlFor='occasion'>Occasion</label>
       <select id="occasion" name='occasion' value={formData.occasion} onChange={handleChange}>
-        <option value='' disabled selected>Occasion</option>
+        <option value='' disabled>Occasion</option>
         <option>Birthday</option>
         <option>Engagement</option>
         <option>Anniversary</option>
