@@ -29,6 +29,15 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <!-- don't know how to access function from web api -->
+    <script src="https://raw.githubusercontent.com/courseraap/capstone/main/api.js"></script>
+    <!-- as a workaround stored functions in a local .js -->
+    <script src='./assets/js/script.js'></script>
+    <!-- must convert function expressions to var to use them, (can't be the same name) -->
+    <script>
+      var fetchApi = fetchAPI
+      var submitApi = submitAPI
+    </script>
     <title>React App</title>
   </head>
   <body>

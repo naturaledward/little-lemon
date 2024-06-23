@@ -14,26 +14,22 @@ export default function Main() {
   const BookingSlot = ({ children }) => <option>{children}</option>
   // map through array passed to it and generate a list of BookingSlot components with the array item as its child
   const AvailableSlots = times => times.map(i => <BookingSlot key={i}>{i}</BookingSlot>)
-  // initialize availableTimes state as an empty array of time slots
+  // initialize availableTimes to available slots fetched from API based on today's date
   /* Note: times is dependent on date, initial value for date is today, so times must be manually initialized to values for today's date
-  reducer changes the times based on date so today's date action in reducer must return same result as initialized */
-  const initializeTimes = () => AvailableSlots(dummyTimes)
+  changes to the times based on date would be done in reducer so today's date action in reducer must return same result as initialized */
+  const today = new Date() //get today's date & convert it to <input type='date'> input date format: yyyy-mm-dd
+  const todayFormatted = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0')
+    + '-' + String(today.getDate()).padStart(2, '0')
+  const initializeTimes = () => AvailableSlots(window.fetchApi(today))
+  // Note: initializeTimes is always invoked whenever reducer is called
   // reducer function for availableTimes state
   // certain available times under time input field will be displayed depending on what date is used in the form
   const updateTimes = (v, { type }) => {
-    /* For now, make it so time options can change if either today's date or tomorrow's date are selected */
-    const today = new Date() //get today's date & convert it to <input type='date'> input date format: yyyy-mm-dd
-    const todayFormatted = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0')
-      + '-' + String(today.getDate()).padStart(2, '0')
-    // get a formatted version of tomorrow's date
-    const tomorrowFormatted = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0')
-      + '-' + String(today.getDate() + 1).padStart(2, '0')
+    const selectedDate = new Date(type+'T00:00:00') // if you don't add time then the date you pass to fetchApi will be offset by timezone diff
     if (type === todayFormatted)
-      return (AvailableSlots(dummyTimes)) //must be the same as what you initialized state with since date was initialized to today
-    if (type === tomorrowFormatted)
-      return (AvailableSlots(['17:00']))
-    // if none of the actions selected, then don't update the state, hence what is returned for update is just the current state
-    return v }
+      return (AvailableSlots(window.fetchApi(today))) //must be the same as what you initialized state with since date was initialized to today
+    //this doesn't need to be a reducer after all, fetchApi will determine the times list not the reducer
+    return (AvailableSlots(window.fetchApi(selectedDate))) }
   // state lifted from BookingPage.js to be passed to BookingPage.js instead along with its dispatch function, state changed to a reducer
   const [availableTimes, dispatchTimes] = useReducer(updateTimes, initializeTimes())
   return (
