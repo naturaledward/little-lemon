@@ -40,22 +40,25 @@ const BookingForm = ({ availableTimes, dispatchTimes }) => {
       {/* make it so user can only select a reservation date for today onward */}
       <input id='res-date' type='date' name='dateVal' min={todayFormatted} value={formData.dateVal} onChange={handleChangeResDate} />
       <label htmlFor='res-time'>Choose time</label>
-      <select id='res-time' name='timeVal' value={formData.timeVal} onChange={handleChange}>
-        {/* a list of <option> tags passed from Main.js that contain all available time slots for a particular date input */}
-        {/* placeholder for empty options. It's disabled & can't be selected. To be set to '' at initialization & when new date selected
-        -Works because when value prop of <select> equals value prop of one of its <option>, that option will be selected */}
-        <option value='' disabled>Select time for given date</option>
-        {availableTimes}</select>
+      <div class="styled-select">
+        <select id='res-time' name='timeVal' value={formData.timeVal} onChange={handleChange}>
+          {/* a list of <option> tags passed from Main.js that contain all available time slots for a particular date input */}
+          {/* placeholder for empty options. Disabled & can't be selected. To be set to '' at initialization & when new date selected
+          -Works because when value prop of <select> equals value prop of one of its <option>, that option will be selected */}
+          <option value='' disabled>Select time for given date</option>
+          {availableTimes}</select> </div>
       <label htmlFor='guests'>Number of guests</label>
       <input id='guests' type='number' placeholder='enter 1-10' min='1' max='10'
         name='guests' value={formData.guests} onChange={handleChange} />
       <label htmlFor='occasion'>Occasion</label>
-      <select id="occasion" name='occasion' value={formData.occasion} onChange={handleChange}>
-        <option value='' disabled>Occasion</option>
-        <option>Birthday</option>
-        <option>Engagement</option>
-        <option>Anniversary</option>
-        <option>Other</option> </select>
+      <div class="styled-select">
+        <select id="occasion" name='occasion' value={formData.occasion} onChange={handleChange}>
+          <option value='' disabled>Occasion</option>
+          <option>Birthday</option>
+          <option>Engagement</option>
+          <option>Anniversary</option>
+          <option>Other</option> </select>
+      </div>
       <button type="submit" disabled={isDisabled}>Make Your reservation</button> </form> </div> </section> }
 const BookingPage = ({ v, f }) => <> <BookingHero /> <BookingForm availableTimes={v} dispatchTimes={f} /> </>
 export default BookingPage
