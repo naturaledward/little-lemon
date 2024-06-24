@@ -35,33 +35,33 @@ const BookingForm = ({ availableTimes, dispatchTimes }) => {
   return <section className='bookingForm'> <div className='contentArea'>
     <h1>Book Now</h1>
     <form onSubmit={handleSubmit} className='formElement'>
-      <div class="field">
+      <div className="field">
         <label htmlFor='res-date'>Choose date</label>
         {/* on change of the date field, the dispatch for availableTimes state is called to update time field options */}
         {/* make it so user can only select a reservation date for today onward */}
         <input id='res-date' type='date' name='dateVal' min={todayFormatted} value={formData.dateVal} onChange={handleChangeResDate} /> </div>
-      <div class="field">
+      <div className="field">
         <label htmlFor='res-time'>Choose time</label>
-        <div class="styled-select">
+        <div className="styled-select">
           <select id='res-time' name='timeVal' value={formData.timeVal} onChange={handleChange}>
             {/* a list of <option> tags passed from Main.js that contain all available time slots for a particular date input */}
             {/* placeholder for empty options. Disabled & can't be selected. To be set to '' at initialization & when new date selected
             -Works because when value prop of <select> equals value prop of one of its <option>, that option will be selected */}
             <option value='' disabled>Select time for given date</option>
             {availableTimes}</select> </div> </div>
-      <div class="field">
+      <div className="field">
         <label htmlFor='guests'>Number of guests</label>
         <input id='guests' type='number' placeholder='enter 1-10' min='1' max='10'
           name='guests' value={formData.guests} onChange={handleChange} /> </div>
-      <div class="field">
+      <div className="field">
         <label htmlFor='occasion'>Occasion</label>
-        <div class="styled-select">
+        <div className="styled-select">
           <select id="occasion" name='occasion' value={formData.occasion} onChange={handleChange}>
             <option value='' disabled>Occasion</option>
             <option>Birthday</option>
             <option>Engagement</option>
             <option>Anniversary</option>
             <option>Other</option> </select> </div> </div>
-      <div class="field"><button type="submit" disabled={isDisabled}>Make Your reservation</button></div> </form> </div> </section> }
+      <div className="field"><button type="submit" disabled={isDisabled}>Make Your reservation</button></div> </form> </div> </section> }
 const BookingPage = ({ v, f }) => <> <BookingHero /> <BookingForm availableTimes={v} dispatchTimes={f} /> </>
 export default BookingPage
