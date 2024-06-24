@@ -180,3 +180,31 @@ main.page section.bookingForm div.contentArea { /* make contentArea a flexbox fo
 main.page section.bookingForm div.contentArea form.formElement { /* make form a grid which defaults to 1 column */
   display: grid; /* grid children will be divs that each contain a label and its associated input field. grid width adopts size of widest child */
   gap: 2rem; } /* space out the label/input field pairs */
+main.page section.bookingForm div.contentArea form.formElement div.field{ /* labels and their input fields combined into their own divs */
+  display: grid; /* make each of these divs a grid that will stack label on top of its input field with a minor gap in between the two */
+  gap: .5rem; }
+main.page section.bookingForm div.contentArea form.formElement label { font-weight: bold; text-transform: uppercase; } /* style form labels */
+main.page section.bookingForm div.contentArea form.formElement input,select { /* style form inputs */
+  cursor: pointer;
+  border: 1px solid #808080;
+  border-radius: 8px;
+  padding: 1rem;
+  font-weight: bold;
+  color: #656565; }
+main.page section.bookingForm div.contentArea form.formElement select { border: 0; background: var(--highlightLight); /* style dropdown */
+  width: 100%; /* select tag within div will adopt the width of its content, make width span its parent div so it's consistent with rest of fields */
+  box-shadow: 0px 2px 3px .3px rgba(0, 0, 0, 0.23);
+    -moz-appearance: none; /* get rid of original arrow */
+    -webkit-appearance: none;
+    appearance: none;
+  /* NOTE: you cannot style options of a select tag as it's handled by the os */ }
+main.page section.bookingForm div.contentArea form.formElement div.img-and-select-container {
+  position: relative; } /* overlay the icon and arrow on top of occasion select. don't hide overflow as that will disrupt select box-shadow */
+main.page section.bookingForm div.contentArea form.formElement div.img-and-select-container img{ /* style the 2 overlayed images */
+  filter: invert(41%) sepia(9%) saturate(6%) hue-rotate(354deg) brightness(91%) contrast(88%); /* make images same color as text */
+  width: 1.1rem; /* resize images */
+  position: absolute; /* allow images to be overlayed on top of occasion select */
+  bottom: 1rem; } /* align images vertically */
+main.page section.bookingForm div.contentArea form.formElement div.img-and-select-container img#occasion-icon { left: 1rem; } /* align icon left */
+main.page section.bookingForm div.contentArea form.formElement div.img-and-select-container img#occasion-arrow { right: 1rem; } /* align arrow rt*/
+main.page section.bookingForm div.contentArea form.formElement div.img-and-select-container select { text-align: center; } /* align text center */

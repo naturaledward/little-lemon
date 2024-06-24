@@ -1,6 +1,8 @@
 // src/pages/BookingPage.js
 // ====================================================
 import React, { useState } from 'react'
+import occasionIcon from '../assets/icon_glass-drinks.svg' /* import the 2 images that will be overlayed on top of occasion select */
+import occasionArrow from '../assets/icon_chevron-down-solid.svg'
 const BookingHero = () =>
   <section className='bookingHero'>
     <div className='contentArea'>
@@ -39,7 +41,8 @@ const BookingForm = ({ availableTimes, dispatchTimes }) => {
         <label htmlFor='res-date'>Choose date</label>
         {/* on change of the date field, the dispatch for availableTimes state is called to update time field options */}
         {/* make it so user can only select a reservation date for today onward */}
-        <input id='res-date' type='date' name='dateVal' min={todayFormatted} value={formData.dateVal} onChange={handleChangeResDate} /> </div>
+        <input id='res-date' type='date' name='dateVal' min={todayFormatted} value={formData.dateVal} onChange={handleChangeResDate} />
+      </div>
       <div className='field'>
         <label htmlFor='res-time'>Choose time</label>
         <select id='res-time' name='timeVal' value={formData.timeVal} onChange={handleChange}>
@@ -55,6 +58,8 @@ const BookingForm = ({ availableTimes, dispatchTimes }) => {
       <div className='field'>
         <label htmlFor='occasion'>Occasion</label>
         <div className='img-and-select-container'>
+          <img id='occasion-icon' src={occasionIcon} alt="occasion icon"/> {/* both images to be overlayed on top of occasion select */}
+          <img id='occasion-arrow'src={occasionArrow} alt="occasion arrow"/>
           <select id='occasion' name='occasion' value={formData.occasion} onChange={handleChange}>
             <option value='' disabled>Occasion</option>
             <option>Birthday</option>
