@@ -45,8 +45,8 @@ const BookingForm = ({ availableTimes, dispatchTimes }) => {
       </div>
       <div className='field'>
         <label htmlFor='res-time'>Choose time</label>
-        <div className="img-and-select-container"> {/* arrow img to be overlayed on time select */}
-          <img className='occasion-arrow' src={occasionArrow} alt="occasion arrow" />
+        <div className='img-and-select-container'> {/* arrow img to be overlayed on time select */}
+          <img className='occasion-arrow' src={occasionArrow} alt='occasion arrow' />
           <select id='res-time' name='timeVal' value={formData.timeVal} onChange={handleChange}>
             {/* a list of <option> tags passed from Main.js that contain all available time slots for a particular date input */}
             {/* placeholder for empty options. Disabled & can't be selected. To be set to '' at initialization & when new date selected
@@ -60,8 +60,8 @@ const BookingForm = ({ availableTimes, dispatchTimes }) => {
       <div className='field'>
         <label htmlFor='occasion'>Occasion</label>
         <div className='img-and-select-container'>
-          <img id='occasion-icon' src={occasionIcon} alt="occasion icon" /> {/* both images to be overlayed on occasion select */}
-          <img className='occasion-arrow' src={occasionArrow} alt="occasion arrow" />
+          <img id='occasion-icon' src={occasionIcon} alt='occasion icon' /> {/* both images to be overlayed on occasion select */}
+          <img className='occasion-arrow' src={occasionArrow} alt='occasion arrow' />
           <select id='occasion' name='occasion' value={formData.occasion} onChange={handleChange}>
             <option value='' disabled>Occasion</option>
             <option>Birthday</option>

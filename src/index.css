@@ -205,7 +205,8 @@ main.page section.bookingForm div.contentArea form.formElement div.img-and-selec
   filter: invert(41%) sepia(9%) saturate(6%) hue-rotate(354deg) brightness(91%) contrast(88%); /* make images same color as text */
   width: 1.1rem; /* resize images */
   position: absolute; /* allow images to be overlayed on top of occasion select */
-  bottom: 1rem; } /* align images vertically */
+  bottom: 1rem; /* align images vertically */
+  pointer-events: none; } /* allows you to click on an overlayed image without effect so underlying element image is overlayed on clicked instead */
 main.page section.bookingForm div.contentArea form.formElement div.img-and-select-container img#occasion-icon { left: 1rem; } /* align icon left */
 main.page section.bookingForm div.contentArea form.formElement div.img-and-select-container img.occasion-arrow { right: 1rem; } /* align arrow rt */
 main.page section.bookingForm div.contentArea form.formElement div.img-and-select-container select { text-align: center; } /* align text center */
