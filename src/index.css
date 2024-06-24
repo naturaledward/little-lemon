@@ -193,15 +193,14 @@ main.page section.bookingForm div.contentArea form.formElement input,select { /*
   color: #656565; }
 main.page section.bookingForm div.contentArea form.formElement select { border: 0; background: var(--highlightLight); /* style dropdown */
   width: 100%; /* select tag within div will adopt the width of its content, make width span its parent div so it's consistent with rest of fields */
+  box-shadow: 0px 2px 3px .3px rgba(0, 0, 0, 0.23);
   -moz-appearance: none; /* get rid of original arrow */
   -webkit-appearance: none;
   appearance: none;
   /* NOTE: you cannot style options of a select tag as it's handled by the os */ }
 main.page section.bookingForm div.contentArea form.formElement select#res-time { padding-right: 3rem; } /* make room on time select for arrow */
 main.page section.bookingForm div.contentArea form.formElement div.img-and-select-container {
-  box-shadow: 0px 2px 3px .3px rgba(0, 0, 0, 0.23); /* add a box-shadow to select for aesthetics, placed in parent because overflow is hidden */
-  position: relative; /* overlay the icon and arrow on top of occasion select  */
-  overflow: hidden;} /* in case overlayed images overflow outside of its parent */
+  position: relative; } /* overlay the icon and arrow on top of occasion select. don't hide overflow as that will disrupt select box-shadow */
 main.page section.bookingForm div.contentArea form.formElement div.img-and-select-container img{ /* style the 2 overlayed images */
   filter: invert(41%) sepia(9%) saturate(6%) hue-rotate(354deg) brightness(91%) contrast(88%); /* make images same color as text */
   width: 1.1rem; /* resize images */
