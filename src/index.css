@@ -198,6 +198,7 @@ main.page section.bookingForm div.contentArea form.formElement select { border: 
     -webkit-appearance: none;
     appearance: none;
   /* NOTE: you cannot style options of a select tag as it's handled by the os */ }
+main.page section.bookingForm div.contentArea form.formElement select#res-time { padding-right: 3rem; } /* make room on time select for arrow */
 main.page section.bookingForm div.contentArea form.formElement div.img-and-select-container {
   position: relative; } /* overlay the icon and arrow on top of occasion select. don't hide overflow as that will disrupt select box-shadow */
 main.page section.bookingForm div.contentArea form.formElement div.img-and-select-container img{ /* style the 2 overlayed images */
@@ -206,5 +207,5 @@ main.page section.bookingForm div.contentArea form.formElement div.img-and-selec
   position: absolute; /* allow images to be overlayed on top of occasion select */
   bottom: 1rem; } /* align images vertically */
 main.page section.bookingForm div.contentArea form.formElement div.img-and-select-container img#occasion-icon { left: 1rem; } /* align icon left */
-main.page section.bookingForm div.contentArea form.formElement div.img-and-select-container img#occasion-arrow { right: 1rem; } /* align arrow rt*/
+main.page section.bookingForm div.contentArea form.formElement div.img-and-select-container img.occasion-arrow { right: 1rem; } /* align arrow rt */
 main.page section.bookingForm div.contentArea form.formElement div.img-and-select-container select { text-align: center; } /* align text center */

@@ -45,12 +45,14 @@ const BookingForm = ({ availableTimes, dispatchTimes }) => {
       </div>
       <div className='field'>
         <label htmlFor='res-time'>Choose time</label>
-        <select id='res-time' name='timeVal' value={formData.timeVal} onChange={handleChange}>
-          {/* a list of <option> tags passed from Main.js that contain all available time slots for a particular date input */}
-          {/* placeholder for empty options. Disabled & can't be selected. To be set to '' at initialization & when new date selected
-          -Works because when value prop of <select> equals value prop of one of its <option>, that option will be selected */}
-          <option value='' disabled>Select time for given date</option>
-          {availableTimes}</select>  </div>
+        <div class="img-and-select-container"> {/* arrow img to be overlayed on time select */}
+          <img className='occasion-arrow' src={occasionArrow} alt="occasion arrow" />
+          <select id='res-time' name='timeVal' value={formData.timeVal} onChange={handleChange}>
+            {/* a list of <option> tags passed from Main.js that contain all available time slots for a particular date input */}
+            {/* placeholder for empty options. Disabled & can't be selected. To be set to '' at initialization & when new date selected
+            -Works because when value prop of <select> equals value prop of one of its <option>, that option will be selected */}
+            <option value='' disabled>Select time for given date</option>
+            {availableTimes}</select> </div> </div>
       <div className='field'>
         <label htmlFor='guests'>Number of guests</label>
         <input id='guests' type='number' placeholder='enter 1-10' min='1' max='10'
@@ -58,14 +60,15 @@ const BookingForm = ({ availableTimes, dispatchTimes }) => {
       <div className='field'>
         <label htmlFor='occasion'>Occasion</label>
         <div className='img-and-select-container'>
-          <img id='occasion-icon' src={occasionIcon} alt="occasion icon"/> {/* both images to be overlayed on top of occasion select */}
-          <img id='occasion-arrow'src={occasionArrow} alt="occasion arrow"/>
+          <img id='occasion-icon' src={occasionIcon} alt="occasion icon" /> {/* both images to be overlayed on occasion select */}
+          <img className='occasion-arrow' src={occasionArrow} alt="occasion arrow" />
           <select id='occasion' name='occasion' value={formData.occasion} onChange={handleChange}>
             <option value='' disabled>Occasion</option>
             <option>Birthday</option>
             <option>Engagement</option>
             <option>Anniversary</option>
             <option>Other</option> </select> </div> </div>
-      <div className='field'><button type='submit' disabled={isDisabled}>Make Your reservation</button></div> </form> </div> </section> }
+      <div className='field'><button type='submit' disabled={isDisabled}>Make Your reservation</button></div>
+    </form> </div> </section> }
 const BookingPage = ({ v, f }) => <> <BookingHero /> <BookingForm availableTimes={v} dispatchTimes={f} /> </>
 export default BookingPage
