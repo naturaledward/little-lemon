@@ -45,7 +45,7 @@ const BookingForm = ({ availableTimes, dispatchTimes }) => {
       </div>
       <div className='field'>
         <label htmlFor='res-time'>Choose time</label>
-        <div class="img-and-select-container"> {/* arrow img to be overlayed on time select */}
+        <div className="img-and-select-container"> {/* arrow img to be overlayed on time select */}
           <img className='occasion-arrow' src={occasionArrow} alt="occasion arrow" />
           <select id='res-time' name='timeVal' value={formData.timeVal} onChange={handleChange}>
             {/* a list of <option> tags passed from Main.js that contain all available time slots for a particular date input */}
