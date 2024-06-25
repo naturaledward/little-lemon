@@ -1,9 +1,10 @@
 // src/components/Main.js
 // ====================================================
-import { useReducer } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { useReducer, useState, useRef, useEffect } from 'react'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import HomePage from '../pages/HomePage'
 import BookingPage from '../pages/BookingPage'
+import ConfirmedBooking from '../pages/ConfirmedBooking'
 export default function Main() {
   /* The page should display the existing booked table times & available slots
   using a list component containing several instances of a BookingSlot component.
@@ -30,12 +31,31 @@ export default function Main() {
     return (AvailableSlots(window.fetchApi(selectedDate))) }
   // state lifted from BookingPage.js to be passed to BookingPage.js instead along with its dispatch function, state changed to a reducer
   const [availableTimes, dispatchTimes] = useReducer(updateTimes, initializeTimes())
+  const [confirmPage, setConfirmPage] = useState('') /* make the confirm page accessible only after successful form submission */
+  const [navToggle, setNavToggle] = useState(true) /* this will call the useEffect hook to navigate to the confirm page */
+  const firstRenderRef = useRef(true); /* use this to skip the first render. First render will call useEffect and attempt to navigate to
+  a route that doesn't exist: /'', ie you won't be able to append /reserve in address bar to get to the reserve page */
+  const navigate = useNavigate(); /* use to navigate to confirm page */
+  const [displayFormData, setDisplayFormData] = useState({}) /* set to form data  if submit api successful, for display in confirm page */
+  const submitForm = obj => { /* to be run after form submission. Will process form data */
+    if (window.submitApi(obj)) { /* submit form data to API and if successful, navigate to confirm page */
+      setDisplayFormData(obj)
+      setConfirmPage('/confirm') /* this creates route to ConfirmedBooking.js, preventing user from going to page by typing /confirm in browser */
+      setNavToggle(curr => !curr) /* change value of navToggle to call useEffect */ } }
+  useEffect(() => { /* navigate to confirm page when navToggle changes */
+    if (firstRenderRef.current) { firstRenderRef.current = false; } /* skip the first render to prevent navigation attempt */
+    else { navigate(confirmPage); /* When you leave page, can't access it again, even if you append /confirm in browser. Won't work because it seems
+    to cause app unmount of app, then reload, which re initializes all state vars, including confirmPage which goes back to '' */ }
+  }, [navToggle]);
   return (
     <main className='page'>
       <Routes>
         {/* default route if nothing typed in browser address */}
         <Route path='/' element={<HomePage />} />
         {/* append /reserve in browser address to go here */}
-        <Route path='/reserve' element={<BookingPage v={availableTimes} f={dispatchTimes} />} />
+        <Route path='/reserve' element={<BookingPage v={availableTimes} f={dispatchTimes} s={submitForm} />} />
+        {/* route doesn't exist until state variable is set upon form submission */}
+        <Route path={confirmPage} element={<ConfirmedBooking dateVal={displayFormData.dateVal} timeVal={displayFormData.timeVal}
+          guests={displayFormData.guests} occasion={displayFormData.occasion} />} />
       </Routes>
     </main>) }

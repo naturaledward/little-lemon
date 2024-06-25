@@ -11,7 +11,7 @@ const BookingHero = () =>
           out the form below and you will receive a confirmation immediately.</p> </div>
       <img src={require('../assets/stock_restaurant.jpg')} alt='hero reserve' /> </div> </section>
 // availableTimes is a list of available times to make a reservation for, displayed as a list of options for <select> input on the form
-const BookingForm = ({ availableTimes, dispatchTimes }) => {
+const BookingForm = ({ availableTimes, dispatchTimes, submitForm }) => {
   const handleChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
   /* in addition to updating date state value like in handleChange, call the dispatch function of availableTimes state
   and pass to it the date that was selected for the date form field
@@ -32,7 +32,7 @@ const BookingForm = ({ availableTimes, dispatchTimes }) => {
   const isDisabled = (formData.dateVal === '') || (formData.timeVal === '') || (formData.guests === '') || (formData.occasion === '')
   const handleSubmit = e => {
     e.preventDefault() /* prevent default behavior upon submit  */
-    alert(formData.dateVal + '\n' + formData.timeVal + '\n' + formData.guests + '\n' + formData.occasion)
+    submitForm(formData) /* send form data to Main for processing */
     setFormData(formDataInitialObj) } /* re initialize state */
   return <section className='bookingForm'> <div className='contentArea'>
     <h1>Book Now</h1>
@@ -70,5 +70,5 @@ const BookingForm = ({ availableTimes, dispatchTimes }) => {
             <option>Other</option> </select> </div> </div>
       <div className='field'><button type='submit' disabled={isDisabled}>Make Your reservation</button></div>
     </form> </div> </section> }
-const BookingPage = ({ v, f }) => <> <BookingHero /> <BookingForm availableTimes={v} dispatchTimes={f} /> </>
+const BookingPage = ({ v, f, s }) => <> <BookingHero /> <BookingForm availableTimes={v} dispatchTimes={f} submitForm={s}/> </>
 export default BookingPage
