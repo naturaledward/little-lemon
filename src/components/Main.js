@@ -55,7 +55,7 @@ export default function Main() {
         {/* append /reserve in browser address to go here */}
         <Route path='/reserve' element={<BookingPage v={availableTimes} f={dispatchTimes} s={submitForm} />} />
         {/* route doesn't exist until state variable is set upon form submission */}
-        <Route path={confirmPage} element={<ConfirmedBooking dateVal={displayFormData.dateVal} timeVal={displayFormData.timeVal}
-          guests={displayFormData.guests} occasion={displayFormData.occasion} />} />
+        <Route path={confirmPage} element={<ConfirmedBooking d={displayFormData.dateVal} t={displayFormData.timeVal}
+          g={displayFormData.guests} o={displayFormData.occasion} />} />
       </Routes>
     </main>) }
