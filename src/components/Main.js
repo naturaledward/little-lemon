@@ -45,8 +45,13 @@ export default function Main() {
   useEffect(() => { /* navigate to confirm page when navToggle changes */
     if (firstRenderRef.current) { firstRenderRef.current = false; } /* skip the first render to prevent navigation attempt */
     else { navigate(confirmPage); /* When you leave page, can't access it again, even if you append /confirm in browser. Won't work because it seems
-    to cause app unmount of app, then reload, which re initializes all state vars, including confirmPage which goes back to '' */ }
-  }, [navToggle]);
+    to cause app unmount of app, then reload, which re initializes all state vars, including confirmPage which goes back to '' */
+      const id = `scrollToTop` /* add smooth scrolling to the top after submit */
+      const element = document.getElementById(id)
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start", }); } } }, [navToggle]);
   return (
     <main className='page'>
       <Routes>
