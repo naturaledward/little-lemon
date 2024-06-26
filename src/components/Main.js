@@ -14,6 +14,8 @@ export default function Main() {
   // map through array passed to it and generate a list of BookingSlot components with the array item as its child
   const AvailableSlots = times => times.map(i => <BookingSlot key={i}>{i}</BookingSlot>)
   // initialize availableTimes to available slots fetched from API based on today's date
+  /* Note: on mount, date initialized to today but it won't call dispatch as dispatch called when date's onChange event is triggered
+  -Initializing date on mount will not trigger that event. It's triggered when user enters a date, thus reducer not called on mount */
   /* Note: times is dependent on date, initial value for date is today, so times must be manually initialized to values for today's date
   changes to the times based on date would be done in reducer so today's date action in reducer must return same result as initialized */
   const today = new Date() //get today's date & convert it to <input type='date'> input date format: yyyy-mm-dd
