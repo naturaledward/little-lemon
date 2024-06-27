@@ -211,3 +211,10 @@ main.page section.bookingForm div.contentArea form.formElement div.img-and-selec
 main.page section.bookingForm div.contentArea form.formElement div.img-and-select-container img.occasion-arrow { right: 1rem; } /* align arrow rt */
 main.page section.bookingForm div.contentArea form.formElement div.img-and-select-container select { text-align: center; } /* align text center */
 main.page section.bookingForm div.contentArea form.formElement button:disabled, button[disabled] { cursor: not-allowed; } /* disabled button hover */
+main.page section.bookingForm div.contentArea form.formElement div.field {
+  position: relative; /* so fieldErrMsg shows up right below input field and does not shift the other elements */
+  margin-bottom: .5rem; } /* make space for error message */
+main.page section.bookingForm div.contentArea form.formElement div.field p.fieldErrMsg { color: red; /* style error msg */
+  position: absolute; /* place error message below the bottom border of parent div.field */
+  bottom: -1.5rem;
+  font-size: 1rem; }

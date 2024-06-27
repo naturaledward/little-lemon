@@ -12,6 +12,10 @@ const BookingHero = () =>
       <img src={require('../assets/stock_restaurant.jpg')} alt='hero reserve' /> </div> </section>
 // availableTimes is a list of available times to make a reservation for, displayed as a list of options for <select> input on the form
 const BookingForm = ({ availableTimes, dispatchTimes, submitForm }) => {
+  // error messages for invalid field inputs
+  const TimeErrMsg = () => <p className='fieldErrMsg'>Please choose a time</p>
+  const GuestsErrMsg = () => <p className='fieldErrMsg'>Please enter from 1-10</p>
+  const OccasionErrMsg = () => <p className='fieldErrMsg'>Please choose an occasion</p>
   const handleChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
   /* in addition to updating date state value like in handleChange, call the dispatch function of availableTimes state
   and pass to it the date that was selected for the date form field
@@ -27,13 +31,16 @@ const BookingForm = ({ availableTimes, dispatchTimes, submitForm }) => {
   // for consistency, initialized value must match the returned value for the associated action(today's date) in the reducer
   // initialize form values and make sure there are placeholders for the empty ones
   const [formData, setFormData] = useState({ dateVal: todayFormatted, timeVal: '', guests: '', occasion: '' })
+  // state object that will control the field error messages
+  const [formDataIsTouched, setFormDataIsTouched] = useState({ timeVal: false, guests: false, occasion: false }) 
   // keep submit button disabled until all form fields are populated
   // date will always have a value so can be disregarded in isDisabled logic
   const isDisabled = !formData.timeVal || !(formData.guests >= 1 && formData.guests <= 10) || !formData.occasion
   const handleSubmit = e => {
     e.preventDefault() /* prevent default behavior upon submit  */
     submitForm(formData) /* send form data to Main for processing */
-    setFormData({ dateVal: todayFormatted, timeVal: '', guests: '', occasion: '' }) } /* re initialize state */
+    setFormData({ dateVal: todayFormatted, timeVal: '', guests: '', occasion: '' }) /* re initialize state */
+    setFormDataIsTouched({ timeVal: false, guests: false, occasion: false }) } 
   return <section className='bookingForm'> <div className='contentArea'>
     <h1>Book Now</h1>
     <form onSubmit={handleSubmit} className='formElement'>
@@ -47,27 +54,34 @@ const BookingForm = ({ availableTimes, dispatchTimes, submitForm }) => {
         <label htmlFor='res-time'>Choose time</label>
         <div className='img-and-select-container'> {/* arrow img to be overlayed on time select */}
           <img className='occasion-arrow' src={occasionArrow} alt='occasion arrow' />
-          <select id='res-time' name='timeVal' value={formData.timeVal} onChange={handleChange}>
+          <select id='res-time' name='timeVal' value={formData.timeVal} onChange={handleChange}
+            // update formDataIsTouched state object to true for associated input field
+            onBlur={() => setFormDataIsTouched({ ...formDataIsTouched, timeVal: true })}>
             {/* a list of <option> tags passed from Main.js that contain all available time slots for a particular date input */}
             {/* placeholder for empty options. Disabled & can't be selected. To be set to '' at initialization & when new date selected
             -Works because when value prop of <select> equals value prop of one of its <option>, that option will be selected */}
             <option value='' disabled>Select time for given date</option>
-            {availableTimes}</select> </div> </div>
+            {availableTimes}</select> </div>
+          {!formData.timeVal && formDataIsTouched.timeVal ? <TimeErrMsg /> : null} </div>
       <div className='field'>
         <label htmlFor='guests'>Number of guests</label>
         <input id='guests' type='number' placeholder='enter 1-10' min='1' max='10'
-          name='guests' value={formData.guests} onChange={handleChange} /> </div>
+          name='guests' value={formData.guests} onChange={handleChange}
+          onBlur={() => setFormDataIsTouched({ ...formDataIsTouched, guests: true })} />
+          {!(formData.guests >= 1 && formData.guests <= 10) && formDataIsTouched.guests ? <GuestsErrMsg /> : null} </div>
       <div className='field'>
         <label htmlFor='occasion'>Occasion</label>
         <div className='img-and-select-container'>
           <img id='occasion-icon' src={occasionIcon} alt='occasion icon' /> {/* both images to be overlayed on occasion select */}
           <img className='occasion-arrow' src={occasionArrow} alt='occasion arrow' />
-          <select id='occasion' name='occasion' value={formData.occasion} onChange={handleChange}>
+          <select id='occasion' name='occasion' value={formData.occasion} onChange={handleChange}
+            onBlur={() => setFormDataIsTouched({ ...formDataIsTouched, occasion: true })}>
             <option value='' disabled>Occasion</option>
             <option>Birthday</option>
             <option>Engagement</option>
             <option>Anniversary</option>
-            <option>Other</option> </select> </div> </div>
+            <option>Other</option> </select> </div>
+          {!formData.occasion && formDataIsTouched.occasion ? <OccasionErrMsg /> : null} </div>
       <div className='field'><button type='submit' disabled={isDisabled}>Make Your reservation</button></div>
     </form> </div> </section> }
 const BookingPage = ({ v, f, s }) => <> <BookingHero /> <BookingForm availableTimes={v} dispatchTimes={f} submitForm={s}/> </>
