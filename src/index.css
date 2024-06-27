@@ -210,3 +210,4 @@ main.page section.bookingForm div.contentArea form.formElement div.img-and-selec
 main.page section.bookingForm div.contentArea form.formElement div.img-and-select-container img#occasion-icon { left: 1rem; } /* align icon left */
 main.page section.bookingForm div.contentArea form.formElement div.img-and-select-container img.occasion-arrow { right: 1rem; } /* align arrow rt */
 main.page section.bookingForm div.contentArea form.formElement div.img-and-select-container select { text-align: center; } /* align text center */
+main.page section.bookingForm div.contentArea form.formElement button:disabled, button[disabled] { cursor: not-allowed; } /* disabled button hover */
