@@ -26,14 +26,14 @@ const BookingForm = ({ availableTimes, dispatchTimes, submitForm }) => {
   // NOTE: though time options are dependent on date, still need to initialize time options as you did for dateVal(today's date)
   // for consistency, initialized value must match the returned value for the associated action(today's date) in the reducer
   // initialize form values and make sure there are placeholders for the empty ones
-  const formDataInitialObj = { dateVal: todayFormatted, timeVal: '', guests: '', occasion: '' }
-  const [formData, setFormData] = useState(formDataInitialObj)
+  const [formData, setFormData] = useState({ dateVal: todayFormatted, timeVal: '', guests: '', occasion: '' })
   // keep submit button disabled until all form fields are populated
-  const isDisabled = (formData.dateVal === '') || (formData.timeVal === '') || (formData.guests === '') || (formData.occasion === '')
+  // date will always have a value so can be disregarded in isDisabled logic
+  const isDisabled = !formData.timeVal || !(formData.guests >= 1 && formData.guests <= 10) || !formData.occasion
   const handleSubmit = e => {
     e.preventDefault() /* prevent default behavior upon submit  */
     submitForm(formData) /* send form data to Main for processing */
-    setFormData(formDataInitialObj) } /* re initialize state */
+    setFormData({ dateVal: todayFormatted, timeVal: '', guests: '', occasion: '' }) } /* re initialize state */
   return <section className='bookingForm'> <div className='contentArea'>
     <h1>Book Now</h1>
     <form onSubmit={handleSubmit} className='formElement'>
