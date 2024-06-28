@@ -17,8 +17,8 @@ header { margin: 10px; /* add a surrounding margin so header content will stay a
   display: flex; /* bring logo and nav bar to main axis and center them along main & cross axis */
   justify-content: center;
   align-items: center; }
-header nav ul { padding-left: 40px; /* ul by default has margin: 16px 0; & padding-left: 40px; these are removed by the css reset
-  -Add the padding back to make some space between logo and ul */
+header nav ul { padding-left: 26px; /* ul by default has margin: 16px 0; & padding-left: 40px; these are removed by the css reset
+  -add a little of the padding back to space out logo and ul while not making the li text wrap */
   list-style: none; /* removes dot next to all li. However, display: inline-block; in the li seems to do that already */ }
 header nav ul li { display: inline-block; /* li by default are stacked on top of each other. This brings them side by side */
   padding: 0 10px; /* add space between each li */ }
