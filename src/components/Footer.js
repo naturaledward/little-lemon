@@ -15,7 +15,7 @@ export default function Footer() {
     <footer>
       <section className='footerContentContainer footerContent'>
         {/* onClick of any of the links, you want to scroll to top of page from the footer handleClick will perform that function */}
-        <div> <Link to="/" onClick={handleClick}><img className='footerImg' src={logo} alt="header logo" /></Link> </div>
+        <div> <Link to="/" onClick={handleClick}><img className='footerImg' src={logo} alt="footer logo home" /></Link> </div>
         <div className="footerContentSansLogo">
           <div className='flexChild'>
             <h4 style={{ color: 'var(--primaryDark)' }}>Site Map</h4><br />

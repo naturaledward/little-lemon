@@ -15,13 +15,14 @@ export default function Header() {
       <header id="scrollToTop"> {/* id not for styling, only purpose of this id is to allow footer links to scroll to the top */}
         {/* Make the logo a link to home as well */}
         {/* this isn't a text link so no need for className='link' because none of those styles will apply */}
-        <Link to="/"><img src={logo} alt="header logo" /></Link>
+        <Link to="/"><img src={logo} alt="header logo home" /></Link>
         <Nav/>
         {/* get hamburger menu icon to display for small screens from url
         -Icon by default is hidden, then revealed only on small screens, media query reveals it
         -Main ul will be hidden when media query for small screens activates */}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-        <button id="hamburgerIcon" onClick={handleClick}> {/* the hamburger icon is a button that will reveal/hide menu for small screens
+        <button id="hamburgerIcon" onClick={handleClick}
+          aria-label='Reveal Nav Menu Options'> {/* the hamburger icon is a button that will reveal/hide menu for small screens
         -onClick, It toggles a state variable, ulClass, between a blank string and 'displayFlex'
         -ulClass will be set to the className of the hamburger ul for small screens
         -by default, the ul won't have a className, so it will be hidden due to default ul#hamburgerUL {display: none;}

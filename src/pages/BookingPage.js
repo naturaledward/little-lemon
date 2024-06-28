@@ -82,7 +82,7 @@ const BookingForm = ({ availableTimes, dispatchTimes, submitForm }) => {
             <option>Anniversary</option>
             <option>Other</option> </select> </div>
           {!formData.occasion && formDataIsTouched.occasion ? <OccasionErrMsg /> : null} </div>
-      <div className='field'><button type='submit' disabled={isDisabled}>Make Your reservation</button></div>
+      <div className='field'><button type='submit' disabled={isDisabled} aria-label='submit form'>Make Your reservation</button></div>
     </form> </div> </section> }
 const BookingPage = ({ v, f, s }) => <> <BookingHero /> <BookingForm availableTimes={v} dispatchTimes={f} submitForm={s}/> </>
 export default BookingPage

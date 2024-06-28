@@ -42,7 +42,7 @@ const CallToAction = () =>
       <div><h1>Little Lemon</h1>
         <h2>Chicago</h2>
         <p>We are a family-owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.</p>
-        <Link className='link' to="/reserve"><button>Reserve a Table</button></Link> </div>
+        <Link className='link' to="/reserve"><button aria-label='Reserve Page'>Reserve a Table</button></Link> </div>
       <img src={require('../assets/hero_waiter_tray.jpg')} alt="hero home" /> </div> </section>;
 const Specials = () =>
   <section className='homeSpecials'>
