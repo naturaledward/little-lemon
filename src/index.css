@@ -218,3 +218,4 @@ main.page section.bookingForm div.contentArea form.formElement div.field p.field
   position: absolute; /* place error message below the bottom border of parent div.field */
   bottom: -1.5rem;
   font-size: 1rem; }
+  
