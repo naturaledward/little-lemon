@@ -33,27 +33,25 @@ export default function Main() {
     return (AvailableSlots(window.fetchApi(selectedDate))) }
   // state lifted from BookingPage.js to be passed to BookingPage.js instead along with its dispatch function, state changed to a reducer
   const [availableTimes, dispatchTimes] = useReducer(updateTimes, initializeTimes())
-  const [confirmPage, setConfirmPage] = useState('') /* make the confirm page accessible only after successful form submission */
+  const confirmPage = useRef(false) /* navigate to confirm page only upon button click */
   const [navToggle, setNavToggle] = useState(true) /* this will call the useEffect hook to navigate to the confirm page */
-  const firstRenderRef = useRef(true); /* use this to skip the first render. First render will call useEffect and attempt to navigate to
-  a route that doesn't exist: /'', ie you won't be able to append /reserve in address bar to get to the reserve page */
   const navigate = useNavigate(); /* use to navigate to confirm page */
   const [displayFormData, setDisplayFormData] = useState({}) /* set to form data  if submit api successful, for display in confirm page */
   const submitForm = obj => { /* to be run after form submission. Will process form data */
     if (window.submitApi(obj)) { /* submit form data to API and if successful, navigate to confirm page */
       setDisplayFormData(obj)
-      setConfirmPage('/confirm') /* this creates route to ConfirmedBooking.js, preventing user from going to page by typing /confirm in browser */
+      confirmPage.current = true; /* allows navigation to confirm page when useEffect called */
       setNavToggle(curr => !curr) /* change value of navToggle to call useEffect */ } }
   useEffect(() => { /* navigate to confirm page when navToggle changes */
-    if (firstRenderRef.current) { firstRenderRef.current = false; } /* skip the first render to prevent navigation attempt */
-    else { navigate(confirmPage); /* When you leave page, can't access it again, even if you append /confirm in browser. Won't work because it seems
-    to cause app unmount of app, then reload, which re initializes all state vars, including confirmPage which goes back to '' */
+     if (confirmPage.current) { navigate('/dMMeZG01qysOejYkUrXJjzgNS4hR4wYM'); //navigate to confirm page only if confirm page access is true
       const id = `scrollToTop` /* add smooth scrolling to the top after submit */
       const element = document.getElementById(id)
       if (element) {
         element.scrollIntoView({
           behavior: "smooth",
-          block: "start", }); } } }, [navToggle]);
+          block: "start", }); } }
+      // resets confirm page access back to false and will only be set to true on buton click
+      confirmPage.current = false }, [navigate, navToggle]);
   return (
     <main className='page'>
       <Routes>
@@ -62,7 +60,7 @@ export default function Main() {
         {/* append /reserve in browser address to go here */}
         <Route path='/reserve' element={<BookingPage v={availableTimes} f={dispatchTimes} s={submitForm} />} />
         {/* route doesn't exist until state variable is set upon form submission */}
-        <Route path={confirmPage} element={<ConfirmedBooking d={displayFormData.dateVal} t={displayFormData.timeVal}
+        <Route path='/dMMeZG01qysOejYkUrXJjzgNS4hR4wYM' element={<ConfirmedBooking d={displayFormData.dateVal} t={displayFormData.timeVal}
           g={displayFormData.guests} o={displayFormData.occasion} />} />
       </Routes>
     </main>) }
